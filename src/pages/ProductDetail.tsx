@@ -30,6 +30,8 @@ import { useFounderMode } from '@/contexts/FounderModeContext'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { ProductImage } from '@/components/ProductImage'
+import { FlowSteps } from '@/components/FlowSteps'
+import { UnifiedBackButton } from '@/components/UnifiedBackButton'
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>()
@@ -56,12 +58,13 @@ export default function ProductDetail() {
   if (!product) {
     return (
       <div className="py-20 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-white">Produto não encontrado</h2>
+        <UnifiedBackButton to="/" label="Voltar ao catálogo" />
+        <h2 className="text-2xl font-bold text-white mt-4">Produto não encontrado</h2>
         <p className="text-sm text-[#A1A6B3]">
           O item solicitado não existe no catálogo de demonstração.
         </p>
         <Button asChild className="rounded-full bg-[#8B5CF6]">
-          <Link to="/">Voltar ao catálogo</Link>
+          <Link to="/">Ir ao catálogo</Link>
         </Button>
       </div>
     )
@@ -90,18 +93,27 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className="space-y-8 animate-fade-up">
-      {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs text-[#A1A6B3]">
-        <Link to="/" className="hover:text-white flex items-center gap-1">
-          <ArrowLeft className="w-3.5 h-3.5" />
-          Catálogo
-        </Link>
-        <ChevronRight className="w-3.5 h-3.5" />
-        <span className="text-[#22D3EE] font-medium">{product.category}</span>
-        <ChevronRight className="w-3.5 h-3.5" />
-        <span className="text-white truncate max-w-[200px] sm:max-w-none">{product.name}</span>
-      </nav>
+    <div className="space-y-6 sm:space-y-8 animate-fade-up">
+      {/* Indicador de Posição no Fluxo de Compra */}
+      <FlowSteps currentStep="produto" />
+
+      {/* Barra de Navegação: Um único caminho de volta claro + Breadcrumb discreto */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#232B3A] pb-3">
+        <UnifiedBackButton to="/" label="Voltar ao catálogo" />
+
+        <nav
+          aria-label="Localização atual"
+          className="flex items-center gap-1.5 text-xs text-[#A1A6B3]"
+        >
+          <span className="text-[#64748B]">Catálogo</span>
+          <ChevronRight className="w-3 h-3 text-[#64748B]" />
+          <span className="text-[#22D3EE] font-medium">{product.category}</span>
+          <ChevronRight className="w-3 h-3 text-[#64748B]" />
+          <span className="text-white font-semibold truncate max-w-[180px] sm:max-w-xs">
+            {product.name}
+          </span>
+        </nav>
+      </div>
 
       {/* Grid Principal de 2 Colunas */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">

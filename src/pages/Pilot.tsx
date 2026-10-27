@@ -1135,7 +1135,7 @@ export default function Pilot() {
         </div>
       </section>
 
-      {/* SEÇÃO 8: SOBRE A PLATAFORMA (SKIP) */}
+      {/* SEÇÃO 8: INFRAESTRUTURA & HOSPEDAGEM EM NUVEM */}
       <section className="bg-[#151923] border border-[#232B3A] rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#232B3A] pb-4">
           <div>
@@ -1144,7 +1144,7 @@ export default function Pilot() {
               Seção 8 de 8
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2.5">
-              Sobre a Plataforma (Skip)
+              Infraestrutura & Hospedagem em Nuvem
             </h2>
             <p className="text-xs sm:text-sm text-[#A1A6B3]">
               Informações técnicas neutras e transparentes para a gestão do dono.
@@ -1162,9 +1162,8 @@ export default function Pilot() {
             </div>
             <h3 className="font-bold text-white text-base">Hospedagem Contínua</h3>
             <p className="text-[#A1A6B3] leading-relaxed">
-              O site da Terrenotech roda hospedado com alta performance no ecossistema da Skip Cloud
-              (banco de dados em tempo real, backend e interface web) e pode continuar lá sem prazo
-              de expiração.
+              O site da Terrenotech roda hospedado com alta performance em nuvem (banco de dados em
+              tempo real, backend e interface web) e opera de forma autônoma.
             </p>
           </div>
 
@@ -1175,8 +1174,8 @@ export default function Pilot() {
             <h3 className="font-bold text-white text-base">Código 100% Exportável</h3>
             <p className="text-[#A1A6B3] leading-relaxed">
               O código-fonte completo (React + TypeScript + Vite) pertence ao fundador. Recomenda-se
-              conectar o repositório GitHub ao projeto no painel da Skip para manter backup contínuo
-              e independência futura total.
+              manter o repositório GitHub sincronizado para backup contínuo e independência futura
+              total.
             </p>
           </div>
 
@@ -1186,9 +1185,8 @@ export default function Pilot() {
             </div>
             <h3 className="font-bold text-white text-base">Gestão de Conta & Painel</h3>
             <p className="text-[#A1A6B3] leading-relaxed">
-              Os dados de acesso, faturamento da nuvem e domínio customizado são gerenciados
-              diretamente no painel administrativo da Skip Cloud pelo proprietário da conta, sem
-              dependências opacas.
+              Os dados de acesso, banco de dados e domínio customizado são gerenciados diretamente
+              no painel administrativo pelo proprietário da conta, sem dependências externas.
             </p>
           </div>
         </div>

@@ -803,7 +803,7 @@ export default function MarketingEngine() {
             </p>
           </div>
 
-          {/* BOTÃO ASSISTENTE IA (AGENTE SKIP CLOUD DEFINIDO) */}
+          {/* BOTÃO ASSISTENTE IA */}
           <div className="flex items-center gap-2">
             <TooltipProvider>
               <Tooltip>
@@ -822,11 +822,11 @@ export default function MarketingEngine() {
                   side="bottom"
                   className="max-w-xs bg-[#0B0D12] text-xs text-[#E2E8F0] border border-[#232B3A] p-3 rounded-xl shadow-xl"
                 >
-                  <p className="font-semibold text-amber-300 mb-1">Agente Skip Cloud Criado</p>
+                  <p className="font-semibold text-amber-300 mb-1">Assistente IA Especialista</p>
                   <p>
-                    O agente nativo <strong>Roteirista Terrenotech</strong> foi registrado com
-                    sucesso via migration. A interface interativa de streaming de chat será
-                    habilitada na próxima atualização.
+                    O agente nativo <strong>Roteirista Terrenotech</strong> está provisionado. A
+                    interface interativa de streaming de chat será habilitada na próxima
+                    atualização.
                   </p>
                 </TooltipContent>
               </Tooltip>

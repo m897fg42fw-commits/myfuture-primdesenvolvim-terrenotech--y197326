@@ -16,6 +16,8 @@ import { useCart } from '@/contexts/CartContext'
 import { ordersService, OrderItem } from '@/services/orders'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
+import { FlowSteps } from '@/components/FlowSteps'
+import { UnifiedBackButton } from '@/components/UnifiedBackButton'
 
 interface DeliveryForm {
   name: string
@@ -180,40 +182,36 @@ export default function Cart() {
   // Se o carrinho estiver vazio
   if (items.length === 0) {
     return (
-      <div className="py-16 max-w-lg mx-auto text-center space-y-6 animate-fade-up">
-        <div className="w-20 h-20 rounded-3xl bg-[#151923] border border-[#232B3A] flex items-center justify-center mx-auto shadow-xl">
-          <ShoppingCart className="w-10 h-10 text-[#8B5CF6]" />
+      <div className="space-y-6 animate-fade-up">
+        <FlowSteps currentStep="carrinho" />
+        <div className="py-14 max-w-lg mx-auto text-center space-y-5">
+          <div className="w-16 h-16 rounded-2xl bg-[#151923] border border-[#232B3A] flex items-center justify-center mx-auto shadow-lg">
+            <ShoppingCart className="w-8 h-8 text-[#8B5CF6]" />
+          </div>
+          <div className="space-y-1.5">
+            <h2 className="text-xl font-extrabold text-white">Seu carrinho está vazio</h2>
+            <p className="text-xs sm:text-sm text-[#A1A6B3]">
+              Nenhum item foi adicionado ainda. Escolha uma peça no catálogo para continuar.
+            </p>
+          </div>
+          <div className="pt-2 flex justify-center">
+            <UnifiedBackButton to="/" label="Voltar ao catálogo de produtos" />
+          </div>
         </div>
-        <div className="space-y-2">
-          <h2 className="text-2xl font-extrabold text-white">Seu carrinho está vazio</h2>
-          <p className="text-sm text-[#A1A6B3]">
-            Explore nosso catálogo com produtos de alta velocidade de saída e adicione itens ao seu
-            carrinho.
-          </p>
-        </div>
-        <Button
-          asChild
-          className="rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#22D3EE] text-[#0B0D12] font-bold px-8 h-12"
-        >
-          <Link to="/">Ver catálogo de produtos</Link>
-        </Button>
       </div>
     )
   }
 
   return (
-    <div className="space-y-8 animate-fade-up">
-      {/* Topo / Voltar */}
-      <div className="flex items-center justify-between">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-[#A1A6B3] hover:text-white transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Continuar comprando
-        </Link>
-        <span className="text-xs text-[#A1A6B3]">
-          {items.length} {items.length === 1 ? 'produto selecionado' : 'produtos selecionados'}
+    <div className="space-y-6 sm:space-y-8 animate-fade-up">
+      {/* Indicador de Posição no Fluxo de Compra */}
+      <FlowSteps currentStep="carrinho" />
+
+      {/* Topo: Um único caminho de volta claro e contagem de itens */}
+      <div className="flex items-center justify-between border-b border-[#232B3A] pb-3">
+        <UnifiedBackButton to="/" label="Voltar ao catálogo" contextLabel="Continuar escolhendo" />
+        <span className="text-xs font-medium text-[#A1A6B3] bg-[#151923] px-3 py-1 rounded-full border border-[#232B3A]">
+          {items.length} {items.length === 1 ? 'item no carrinho' : 'itens no carrinho'}
         </span>
       </div>
 

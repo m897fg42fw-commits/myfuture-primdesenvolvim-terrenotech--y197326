@@ -29,6 +29,8 @@ import { useCart } from '@/contexts/CartContext'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { ProductImage } from '@/components/ProductImage'
+import { FlowSteps } from '@/components/FlowSteps'
+import { OnboardingGuide } from '@/components/OnboardingGuide'
 
 export default function Index() {
   const { isAuthenticated } = useAuth()
@@ -107,153 +109,87 @@ export default function Index() {
   }
 
   return (
-    <div className="space-y-10 animate-fade-up">
-      {/* Banner de Destaque Animado com a Imagem da Marca (Morro Fortaleza - RS) */}
-      <section className="relative overflow-hidden rounded-3xl border border-[#232B3A] p-6 sm:p-8 lg:p-10 bg-gradient-to-br from-[#151923] via-[#10141e] to-[#0B0D12] shadow-2xl">
-        {/* Elementos visuais de brilho no fundo */}
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#8B5CF6]/20 rounded-full blur-3xl pointer-events-none animate-float-gentle" />
-        <div
-          className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#22D3EE]/15 rounded-full blur-3xl pointer-events-none animate-float-gentle"
-          style={{ animationDelay: '2.5s' }}
-        />
+    <div className="space-y-6 sm:space-y-8 animate-fade-up">
+      {/* Indicador de Posição no Fluxo de Compra */}
+      <FlowSteps currentStep="catalogo" />
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Coluna Texto e Botões de Ação */}
-          <div className="lg:col-span-7 space-y-4">
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10B981]/15 border border-[#10B981]/40 text-[#34D399] text-xs font-semibold tracking-wide uppercase">
-                <Sparkles className="w-3.5 h-3.5 text-[#34D399]" />
-                Terrenotech • Peças até 450cc em Duas Camadas
-              </div>
-              <span className="text-[11px] text-[#A1A6B3] bg-[#0B0D12]/80 px-2.5 py-1 rounded-full border border-[#232B3A]">
-                ⛰️ Morro Fortaleza (RS)
-              </span>
+      {/* Guia de Bordo (Onboarding na 1ª visita ou reabertura por botão) */}
+      <OnboardingGuide />
+
+      {/* Banner Principal Clean e Focado */}
+      <section className="relative overflow-hidden rounded-3xl border border-[#232B3A] p-6 sm:p-8 bg-gradient-to-br from-[#151923] via-[#10141e] to-[#0B0D12] shadow-xl">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-8 space-y-3">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10B981]/15 border border-[#10B981]/40 text-[#34D399] text-xs font-semibold tracking-wide uppercase">
+              <Sparkles className="w-3.5 h-3.5 text-[#34D399]" />
+              Peças de Reposição até 450cc
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              Peças até 450cc em duas camadas: <br className="hidden sm:inline" />
-              <span className="gradient-brand-text">giro no núcleo e ticket no segmento alto</span>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+              Peças e acessórios direto ao motociclista
             </h1>
 
-            <p className="text-sm sm:text-base text-[#A1A6B3] max-w-2xl leading-relaxed">
-              Dropshipping nacional sem estoque em duas camadas estratégicas:{' '}
-              <strong>núcleo até 250cc</strong> (CG 160, Factor 150, Biz 125 — 80% do mercado,
-              volume e giro) + <strong>camada 250–450cc</strong> (CB 300, Twister, Dominar 400,
-              Ninja 400, Himalayan 450, Lander — ticket maior e menor concorrência). Compre só
-              depois de vender, com caixa positivo por construção.
+            <p className="text-xs sm:text-sm text-[#A1A6B3] max-w-2xl leading-relaxed">
+              Linha completa com procedência nacional, marcas de referência (Vaz, Pro Tork, Cobreq,
+              Nakata) e garantia com nota fiscal. Escolha os itens abaixo e monte seu pedido em
+              minutos.
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-2.5">
-              {/* Botões internos visíveis apenas com o Modo Fundador ATIVADO */}
-              {isFounderMode && (
-                <>
-                  <Button
-                    asChild
-                    className="rounded-full bg-gradient-to-r from-[#8B5CF6] via-[#7C3AED] to-[#22D3EE] hover:opacity-95 text-[#0B0D12] font-black px-5 py-2.5 h-auto shadow-lg shadow-[#8B5CF6]/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                  >
-                    <Link to="/roteiro" className="flex items-center gap-2">
-                      <Map className="w-4 h-4 text-[#0B0D12]" />
-                      Roteiro do Fundador
-                      <ArrowRight className="w-4 h-4 text-[#0B0D12]" />
-                    </Link>
-                  </Button>
-
-                  <Button
-                    asChild
-                    className="rounded-full bg-gradient-to-r from-[#10B981] to-[#059669] hover:opacity-95 text-white font-bold px-4 py-2.5 h-auto shadow-lg shadow-[#10B981]/25 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs"
-                  >
-                    <Link to="/analises/plano" className="flex items-center gap-2">
-                      <Compass className="w-4 h-4" />
-                      Plano de Voo
-                    </Link>
-                  </Button>
-
-                  <Button
-                    asChild
-                    className="rounded-full bg-gradient-to-r from-[#F87171] to-[#EC4899] hover:opacity-95 text-white font-bold px-4 py-2.5 h-auto shadow-lg shadow-[#F87171]/25 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs"
-                  >
-                    <Link to="/analises/queda" className="flex items-center gap-1.5">
-                      <ShieldAlert className="w-4 h-4" />
-                      Filão da Queda (Interno)
-                    </Link>
-                  </Button>
-                </>
-              )}
-
-              {/* Botões Públicos (limpos) */}
+            {/* Ações Rápidas Públicas e Discretas */}
+            <div className="pt-1 flex flex-wrap items-center gap-2">
               <Button
                 asChild
                 variant="outline"
-                className="rounded-full border-[#1E3A8A]/80 bg-[#0B132B]/80 hover:bg-[#1E3A8A]/30 text-[#60A5FA] font-bold px-4 py-2.5 h-auto transition-all text-xs"
-              >
-                <Link to="/clube" className="flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-[#60A5FA]" />
-                  Clube Moto-T — Programa Terrenotech
-                </Link>
-              </Button>
-
-              <Button
-                asChild
-                variant="outline"
-                className="rounded-full border-[#34D399]/50 bg-[#151923] hover:bg-[#34D399]/20 text-[#34D399] font-bold px-4 py-2.5 h-auto transition-all text-xs"
+                className="rounded-full border-[#232B3A] bg-[#0B0D12] hover:bg-[#1B212D] text-[#CBD5E1] hover:text-white text-xs h-8 px-3.5"
               >
                 <Link to="/por-que-comprar-online" className="flex items-center gap-1.5">
-                  <TrendingUp className="w-4 h-4 text-[#34D399]" />
-                  Por Que Online? (Estudo)
+                  <TrendingUp className="w-3.5 h-3.5 text-[#34D399]" />
+                  Por que comprar online?
                 </Link>
               </Button>
-            </div>
 
-            <div className="pt-1 flex items-center gap-2 text-xs text-[#A1A6B3]">
-              <Zap className="w-3.5 h-3.5 text-[#34D399]" />
-              <span>
-                Peças essenciais até 450cc com marcas paralelas TOP nacionais (Vaz, Pro Tork,
-                Cobreq, Nakata, Magnetron) e margem média de ~40%
-              </span>
+              <Button
+                asChild
+                variant="outline"
+                className="rounded-full border-[#232B3A] bg-[#0B0D12] hover:bg-[#1B212D] text-[#CBD5E1] hover:text-white text-xs h-8 px-3.5"
+              >
+                <Link to="/clube" className="flex items-center gap-1.5">
+                  <Users className="w-3.5 h-3.5 text-[#22D3EE]" />
+                  Clube Moto-T
+                </Link>
+              </Button>
+
+              {/* Ações internas exclusivas do Modo Fundador */}
+              {isFounderMode && (
+                <Button
+                  asChild
+                  className="rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 text-xs h-8 px-3.5 font-bold"
+                >
+                  <Link to="/roteiro" className="flex items-center gap-1.5">
+                    <Map className="w-3.5 h-3.5 text-amber-400" />
+                    Roteiro Interno
+                  </Link>
+                </Button>
+              )}
             </div>
           </div>
 
-          {/* Coluna Ilustração da Marca: Morro Fortaleza no RS com a moto no topo */}
-          <div className="lg:col-span-5 relative group">
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#10B981]/30 via-[#22D3EE]/20 to-[#8B5CF6]/30 blur-lg opacity-70 group-hover:opacity-100 transition duration-300" />
-            <div className="relative rounded-2xl overflow-hidden border border-[#232B3A] bg-[#0B0D12] shadow-2xl">
-              <MountainMotoLogo variant="hero" />
-              <div className="px-4 py-3 bg-[#121620] border-t border-[#232B3A] flex items-center justify-between text-xs">
-                <span className="text-[#A1A6B3] flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                  Identidade Terrenotech: Liberdade & Resistência
+          {/* Selo Visual da Marca */}
+          <div className="lg:col-span-4 hidden lg:block">
+            <div className="rounded-2xl overflow-hidden border border-[#232B3A] bg-[#0B0D12] p-4 flex items-center gap-4">
+              <MountainMotoLogo variant="icon" className="w-16 h-16 shrink-0 rounded-xl" />
+              <div className="space-y-1">
+                <span className="text-xs font-bold text-white block">Terrenotech Noturno</span>
+                <span className="text-[11px] text-[#A1A6B3] block">
+                  Garantia com NF em todo o Brasil
                 </span>
-                <span className="text-[#34D399] font-bold font-mono">Morro Fortaleza • RS</span>
+                <span className="text-[10px] text-[#34D399] font-medium flex items-center gap-1">
+                  <Check className="w-3 h-3" /> Distribuição ágil
+                </span>
               </div>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Mini Banner Destaque de Mercado / Por Que Online? */}
-      <section className="bg-gradient-to-r from-[#1B1429] via-[#151923] to-[#0E1524] border border-[#8B5CF6]/30 rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
-        <div className="space-y-1.5 max-w-2xl text-center md:text-left">
-          <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#22D3EE] bg-[#22D3EE]/10 px-2.5 py-0.5 rounded-full border border-[#22D3EE]/30">
-            <span>📊 Pesquisa Kantar / Varejo S.A. & IBGE</span>
-          </div>
-          <h3 className="text-lg sm:text-xl font-extrabold text-white">
-            Por que 66% dos motociclistas preferem comprar peças pelo site?
-          </h3>
-          <p className="text-xs text-[#A1A6B3] leading-relaxed">
-            Economia de até 50% frente à concessionária, pronta entrega das maiores distribuidoras
-            brasileiras e marcas consolidadas (Vaz, Pro Tork, Cobreq, Nakata). Sem intermediário e
-            com nota fiscal.
-          </p>
-        </div>
-        <Button
-          asChild
-          className="rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#22D3EE] text-[#0B0D12] font-black px-5 py-2 h-auto text-xs shrink-0 shadow-md shadow-[#8B5CF6]/30"
-        >
-          <Link to="/por-que-comprar-online" className="flex items-center gap-1.5">
-            Ver Estudo Completo
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </Button>
       </section>
 
       {/* Seção do Catálogo */}

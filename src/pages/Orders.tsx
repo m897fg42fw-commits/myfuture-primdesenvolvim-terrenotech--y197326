@@ -27,6 +27,7 @@ import { DEMO_PRODUCTS } from '@/lib/demoProducts'
 import { useRealtime } from '@/hooks/use-realtime'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
+import { UnifiedBackButton } from '@/components/UnifiedBackButton'
 import {
   Dialog,
   DialogContent,
@@ -204,7 +205,15 @@ Tel: ${order.customer_phone}`
   }
 
   return (
-    <div className="space-y-8 animate-fade-up">
+    <div className="space-y-6 sm:space-y-8 animate-fade-up">
+      {/* Caminho de volta único e padronizado */}
+      <div className="flex items-center justify-between border-b border-[#232B3A] pb-3">
+        <UnifiedBackButton to="/" label="Voltar ao catálogo" />
+        <span className="text-xs text-[#94A3B8]">
+          {orders.length} {orders.length === 1 ? 'pedido registrado' : 'pedidos registrados'}
+        </span>
+      </div>
+
       {/* Cabeçalho */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -212,7 +221,7 @@ Tel: ${order.customer_phone}`
             <Package className="w-7 h-7 text-[#8B5CF6]" />
             Painel de Pedidos
           </h1>
-          <p className="text-sm text-[#A1A6B3]">
+          <p className="text-xs sm:text-sm text-[#A1A6B3]">
             Acompanhamento em tempo real das vendas e fluxo de entregas.
           </p>
         </div>

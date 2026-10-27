@@ -23,6 +23,7 @@ import {
   EyeOff,
 } from 'lucide-react'
 import MountainMotoLogo from '@/components/MountainMotoLogo'
+import { ExitSiteButton } from '@/components/ExitSiteButton'
 import { useCart } from '@/contexts/CartContext'
 import { useAuth } from '@/contexts/AuthContext'
 import { useFounderMode } from '@/contexts/FounderModeContext'
@@ -154,6 +155,9 @@ export default function Layout() {
 
           {/* Ações da Direita */}
           <div className="flex items-center gap-3">
+            {/* Botão Sair do Site sempre visível e acessível */}
+            <ExitSiteButton variant="header" />
+
             {/* Chave Discreta do Modo Fundador (Apenas para admin candre) */}
             {canAccessFounderMode && (
               <button
@@ -433,6 +437,8 @@ export default function Layout() {
               <ShieldCheck className="w-4 h-4" />
               <span>Checkout Seguro & Alta Velocidade</span>
             </div>
+            <span>•</span>
+            <ExitSiteButton variant="footer" />
             <span>•</span>
             <p>© 2025 Terrenotech. Todos os direitos reservados.</p>
           </div>

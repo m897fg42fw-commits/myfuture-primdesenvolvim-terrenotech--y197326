@@ -13,6 +13,8 @@ import {
 } from 'lucide-react'
 import { ordersService, OrderRecord } from '@/services/orders'
 import { Button } from '@/components/ui/button'
+import { FlowSteps } from '@/components/FlowSteps'
+import { UnifiedBackButton } from '@/components/UnifiedBackButton'
 
 export default function Confirmation() {
   const { id } = useParams<{ id: string }>()
@@ -44,7 +46,18 @@ export default function Confirmation() {
     : new Date().toLocaleDateString('pt-BR')
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8 animate-fade-up py-4">
+    <div className="max-w-3xl mx-auto space-y-6 sm:space-y-8 animate-fade-up py-2">
+      {/* Indicador de Posição no Fluxo de Compra */}
+      <FlowSteps currentStep="confirmacao" />
+
+      {/* Linha com Caminho de Volta Claro */}
+      <div className="flex items-center justify-between border-b border-[#232B3A] pb-3">
+        <UnifiedBackButton to="/" label="Voltar ao início do catálogo" />
+        <span className="text-xs text-[#34D399] font-medium bg-[#10B981]/10 px-3 py-1 rounded-full border border-[#10B981]/30">
+          Pedido confirmado
+        </span>
+      </div>
+
       {/* Cabeçalho com Ícone de Sucesso Animado */}
       <div className="text-center space-y-4">
         <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#34D399]/20 to-[#22D3EE]/20 border-2 border-[#34D399] text-[#34D399] shadow-2xl shadow-[#34D399]/30 animate-scale-in">
